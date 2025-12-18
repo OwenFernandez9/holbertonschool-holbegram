@@ -30,15 +30,22 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextField(
+            TextFieldInput(
               controller: _emailController,
               hintText: 'Email',
+              ispassword: false,
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 12),
-            CustomTextField(
+            TextFieldInput(
               controller: _passwordController,
               hintText: 'Password',
-              obscureText: true,
+              ispassword: true,
+              keyboardType: TextInputType.text,
+              suffixIcon: const Icon(
+                Icons.visibility_off,
+                color: Color.fromARGB(218, 226, 37, 24),
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
