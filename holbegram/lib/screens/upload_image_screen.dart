@@ -1,7 +1,7 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../methods/auth_methods.dart';
 
 class AddPicture extends StatefulWidget {
   final String email;
@@ -134,7 +134,27 @@ class _AddPictureState extends State<AddPicture> {
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    final String res = await AuthMethode().signUpUser(
+                      email: widget.email,
+                      username: widget.username,
+                      password: widget.password,
+                      file: _image,
+                    );
+
+                    if (res == "success") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('success'),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(res),
+                        ),
+                      );
+                    }
                   },
                   child: const Text(
                     'Next',

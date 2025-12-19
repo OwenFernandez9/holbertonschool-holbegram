@@ -17,12 +17,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _passwordVisible = true;
+  bool _passwordVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _passwordVisible = true;
+    _passwordVisible = false;
   }
 
   @override
@@ -83,9 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 });
                               },
                               icon: Icon(
-                                _passwordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
+                                _passwordVisible ? Icons.visibility : Icons.visibility_off,
                                 color: const Color.fromARGB(218, 226, 37, 24),
                               ),
                             ),

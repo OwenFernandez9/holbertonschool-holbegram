@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/text_field.dart';
 import 'login_screen.dart';
+import 'upload_image_screen.dart';
+
 
 class SignUp extends StatefulWidget {
   final TextEditingController emailController;
@@ -16,7 +18,7 @@ class SignUp extends StatefulWidget {
     required this.usernameController,
     required this.passwordController,
     required this.passwordConfirmController,
-    bool passwordVisible = true,
+    bool passwordVisible = false,
   }) : _passwordVisible = passwordVisible;
 
   @override
@@ -108,9 +110,7 @@ class _SignUpState extends State<SignUp> {
                                 });
                               },
                               icon: Icon(
-                                _passwordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
+                                _passwordVisible ? Icons.visibility : Icons.visibility_off,
                                 color: const Color.fromARGB(218, 226, 37, 24),
                               ),
                             ),
@@ -129,10 +129,8 @@ class _SignUpState extends State<SignUp> {
                                   _passwordVisible = !_passwordVisible;
                                 });
                               },
-                              icon: Icon(
-                                _passwordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
+                             icon: Icon(
+                                _passwordVisible ? Icons.visibility : Icons.visibility_off,
                                 color: const Color.fromARGB(218, 226, 37, 24),
                               ),
                             ),
@@ -149,7 +147,18 @@ class _SignUpState extends State<SignUp> {
                                   const Color.fromARGB(218, 226, 37, 24),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddPicture(
+                                      email: widget.emailController.text.trim(),
+                                      username: widget.usernameController.text.trim(),
+                                      password: widget.passwordController.text.trim(),
+                                    ),
+                                  ),
+                                );
+                              },
                               child: const Text(
                                 'Sign up',
                                 style: TextStyle(color: Colors.white),
