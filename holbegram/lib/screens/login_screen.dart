@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/text_field.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final TextEditingController emailController;
@@ -128,9 +129,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text("Don't have an account"),
+                                const Text("Don't have an account "),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => SignUp(
+                                          emailController: TextEditingController(),
+                                          usernameController: TextEditingController(),
+                                          passwordController: TextEditingController(),
+                                          passwordConfirmController: TextEditingController(),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   child: const Text(
                                     'Sign up',
                                     style: TextStyle(
@@ -142,7 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ],
                             ),
                           ),
-
                           const SizedBox(height: 10),
                           Row(
                             children: const [
