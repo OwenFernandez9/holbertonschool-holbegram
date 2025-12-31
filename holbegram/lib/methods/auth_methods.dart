@@ -57,10 +57,8 @@ class AuthMethode {
 
       final User user = userCredential.user!;
 
-
       String photoUrl = "";
       if (file != null) {
-        
       }
 
       final Users users = Users(
@@ -86,5 +84,14 @@ class AuthMethode {
     }
 
     return res;
+  }
+
+  Future<Users> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot snap =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    return Users.fromSnap(snap);
   }
 }
